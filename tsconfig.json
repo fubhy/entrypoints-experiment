@@ -1,6 +1,3 @@
 {
-  "references": [
-    { "path": "./src/tsconfig.json" },
-    { "path": "./entrypoints/tsconfig.json" }
-  ]
+  "references": [{ "path": "./src/entrypoints/tsconfig.json" }]
 }
