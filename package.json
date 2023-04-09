@@ -1,0 +1,52 @@
+{
+  "name": "entrypoints-experiment",
+  "private": true,
+  "scripts": {
+    "build": "pnpm run build:cjs && pnpm run build:esm+types",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir ./dist/cjs && echo > ./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm+types": "tsc --project tsconfig.build.json --module es2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types && echo > ./dist/esm/package.json '{\"type\":\"module\"}'",
+    "typecheck": "tsc --noEmit"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "typings": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "!dist/**/*.tsbuildinfo",
+    "src/**/*.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/entrypoints/index.d.ts",
+      "import": "./dist/esm/entrypoints/index.js",
+      "default": "./dist/cjs/entrypoints/index.js"
+    },
+    "./foo": {
+      "types": "./dist/types/entrypoints/foo.d.ts",
+      "import": "./dist/esm/entrypoints/foo.js",
+      "default": "./dist/cjs/entrypoints/foo.js"
+    },
+    "./bar": {
+      "types": "./dist/types/entrypoints/bar.d.ts",
+      "import": "./dist/esm/entrypoints/bar.js",
+      "default": "./dist/cjs/entrypoints/bar.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "foo": [
+        "./dist/types/entrypoints/foo.d.ts"
+      ],
+      "bar": [
+        "./dist/types/entrypoints/bar.d.ts"
+      ]
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.0.3"
+  }
+}

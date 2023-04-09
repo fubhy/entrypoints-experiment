@@ -1,0 +1,9 @@
+{
+  // NOTE: We are not referencing `../entrypoints` from here. Hence, imports from there do not appear in auto-complete and wouldn't compile.
+  "extends": "../tsconfig.base.json",
+  "include": ["."],
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "."
+  }
+}
